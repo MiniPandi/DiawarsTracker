@@ -1,7 +1,13 @@
 const axios = require('axios');
 const { PrismaClient } = require('@prisma/client');
+const express = require('express');
 
 const prisma = new PrismaClient();
+const app = express();
+const PORT = 3820;
+app.use(express.static('web'))
+
+let cache = {};
 
 async function main() {
     request()
@@ -20,6 +26,20 @@ async function request() {
             data: data
         }
     })
+    cache = {}
+    console.log("Added new Data")
 }
 
+app.get('/', async (req, res) => {
+    if (!cache.length) {
+        const data = await prisma.data.findMany();
+        cache = data
+    }
+    res.send(cache)
+})
+
 main()
+
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`)
+})
