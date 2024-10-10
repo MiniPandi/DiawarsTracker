@@ -30,7 +30,7 @@ async function request() {
     console.log("Added new Data")
 }
 
-app.get('/', async (req, res) => {
+app.get('/api', async (req, res) => {
     if (!cache.length) {
         const data = await prisma.data.findMany();
         cache = data
