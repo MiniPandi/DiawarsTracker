@@ -9,8 +9,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     const date = new Date(item.timestamp);
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getHours()}:${date.getMinutes()}`;
   });
-
-  const datasets = Object.keys(data[0].data).filter(key => ['red', 'green', 'blue', 'yellow'].includes(key)).map(key => {
+  const datasets = Object.keys(data[0].data).filter(key => ['red', 'green', 'blue', 'yellow', 'battle_royale', 'event', 'pvp', 'voting', 'nirvana', 'game', 'total'].includes(key)).map(key => {
     const dataArray = data.map(item => item.data[key]);
     let borderColor;
     switch (key) {
@@ -25,6 +24,27 @@ window.addEventListener('DOMContentLoaded', async () => {
         break;
       case 'yellow':
         borderColor = '#ffff00';
+        break;
+      case 'battle_royale':
+        borderColor = '#5D2E8C';
+        break;
+      case 'event':
+        borderColor = '#FF6F61';
+        break;
+      case 'pvp':
+        borderColor = '#FFB300';
+        break;
+      case 'voting':
+        borderColor = '#9C27B0';
+        break;
+      case 'nirvana':
+        borderColor = '#1A535C';
+        break;
+      case 'game':
+        borderColor = '#FF8A65';
+        break;
+      case 'total':
+        borderColor = '#6A4C93';
         break;
     }
     return {
@@ -54,7 +74,6 @@ window.addEventListener('DOMContentLoaded', async () => {
           display: true,
           ticks: {
             min: 0,
-            max: 2000,
             callback: function(value, index, values) {
               return value;
             }
