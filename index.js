@@ -4,7 +4,9 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
+    request()
     setInterval(request, 1000 * 60 * 5);
+    console.log("Started")
 }
 
 async function request() {
