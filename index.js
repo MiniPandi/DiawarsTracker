@@ -1,11 +1,13 @@
 const axios = require('axios');
 const { PrismaClient } = require('@prisma/client');
 const express = require('express');
+const cors = require('cors');
 
 const prisma = new PrismaClient();
 const app = express();
 const PORT = 3820;
 app.use(express.static('web'))
+app.use(cors());
 
 let cache = {};
 
