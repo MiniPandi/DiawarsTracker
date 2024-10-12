@@ -74,6 +74,7 @@ async function request() {
   });
 
   const ctx = document.getElementById('chart').getContext('2d');
+  ctx.innerHtml = '';
   const chart = new Chart(ctx, {
     type: 'line',
     data: {
