@@ -73,8 +73,12 @@ async function request() {
     }
   });
 
-  const ctx = document.getElementById('chart').getContext('2d');
-  ctx.innerHtml = '';
+  const chartContainer = document.getElementById('chartContainer');
+chartContainer.innerHTML = '';
+const canvas = document.createElement('canvas');
+canvas.id = 'chart';
+chartContainer.appendChild(canvas);
+const ctx = canvas.getContext('2d');
   const chart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -91,7 +95,7 @@ async function request() {
           display: true,
           ticks: {
             min: 0,
-            callback: function(value, index, values) {
+            callback: function (value, index, values) {
               return value;
             }
           }
@@ -112,7 +116,7 @@ async function request() {
         mode: 'nearest',
         intersect: false,
         callbacks: {
-          label: function(tooltipItem, data) {
+          label: function (tooltipItem, data) {
             return data.datasets[tooltipItem.datasetIndex].label + ': ' + tooltipItem.yLabel;
           }
         }
